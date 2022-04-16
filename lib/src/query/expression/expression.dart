@@ -17,7 +17,8 @@ abstract class Expression {
   // static Expression date(DateTime value);
 
   factory Expression.intValue(int value) {
-    return VariableExpression({'intValue': value});
+    //return VariableExpression({'intValue': value});
+    return VariableExpression({value.bitLength > 32 ? 'longValue' : 'intValue': value});
   }
 
   factory Expression.value(Object value) {
@@ -42,8 +43,7 @@ abstract class Expression {
 
   final List<Map<String, dynamic>> _internalExpressionStack = [];
 
-  List<Map<String, dynamic>> get internalExpressionStack =>
-      List.from(_internalExpressionStack);
+  List<Map<String, dynamic>> get internalExpressionStack => List.from(_internalExpressionStack);
 
   Expression add(Expression expression) {
     return _addExpression('add', expression);
@@ -54,8 +54,7 @@ abstract class Expression {
   }
 
   Expression between(Expression expression1, Expression expression2) {
-    return _addExpression('between', expression1,
-        secondSelector: 'and', secondExpression: expression2);
+    return _addExpression('between', expression1, secondSelector: 'and', secondExpression: expression2);
   }
 
   Expression divide(Expression expression) {
@@ -141,17 +140,12 @@ abstract class Expression {
     return fromExpression;
   }
 
-  Expression _addExpression(String selector, Expression expression,
-      {String? secondSelector, Expression? secondExpression}) {
+  Expression _addExpression(String selector, Expression expression, {String? secondSelector, Expression? secondExpression}) {
     var clone = _clone();
     if (secondSelector != null && secondExpression != null) {
-      clone._internalExpressionStack.add({
-        selector: expression.internalExpressionStack,
-        secondSelector: secondExpression.internalExpressionStack
-      });
+      clone._internalExpressionStack.add({selector: expression.internalExpressionStack, secondSelector: secondExpression.internalExpressionStack});
     } else {
-      clone._internalExpressionStack
-          .add({selector: expression.internalExpressionStack});
+      clone._internalExpressionStack.add({selector: expression.internalExpressionStack});
     }
     return clone;
   }
