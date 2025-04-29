@@ -3,12 +3,13 @@ description: Demonstrates how to use the couchbase_lite plugin.
 publish_to: 'none'
 
 environment:
-  sdk: '>=2.12.0 <3.0.0'
+  #sdk: '>=2.12.0 <3.0.0'
+  sdk: ">=3.4.0 <4.0.0"
 
 dependencies:
   # rxdart is used for the database and observable response classes
-  rxdart: ^0.27.1
-  http: ^0.13.3
+  rxdart: ^0.28.0
+  http: ^1.3.0
   package_info: ^2.0.2
   url_launcher: ^6.0.9
 
