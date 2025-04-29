@@ -26,7 +26,8 @@ apply plugin: 'com.android.library'
 
 android {
     compileSdkVersion 29
-
+    namespace 'com.saltechsystems.couchbase_lite'
+    
     defaultConfig {
         minSdkVersion 19
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
