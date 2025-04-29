@@ -1,6 +1,6 @@
 part of couchbase_lite;
 
-abstract class Expression {
+abstract mixin class Expression {
   factory Expression.all() {
     return PropertyExpression({'property': null});
   }

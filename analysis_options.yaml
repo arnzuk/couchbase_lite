@@ -22,3 +22,7 @@ linter:
 # analyzer:
 #   exclude:
 #     - path/to/excluded/files/**
+
+analyzer:
+  errors:
+    mixin_inherits_from_not_object: ignore
